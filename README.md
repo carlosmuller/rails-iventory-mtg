@@ -1,24 +1,26 @@
-# README
+# Ruby version 2.3.3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Rails version 5.0.2
 
-Things you may want to cover:
+# Database (Postgresql 9.6.1)
+Don't forget to change config/database.yml to match your system configurations,
+then to create and run migrations for the first time:
+  
+```rake db:setup```
 
-* Ruby version
+If  you created a migration and want to run it:
+  
+``` rake db:migrate```
 
-* System dependencies
+# Third party libraries or sites
+To populate the database we used [mtgjson](https://mtgjson.com/)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# TODO
+  * Seed all cards from mtgjson, and explain setup
+  * Create docs of the model Cards and how to use it
+  * Search cards
+  * Create model user
+  * Create user inventory
+  * Heroku deploy
+  * (MAYBE) Show prices
+  * (MAYBE) Deck list
