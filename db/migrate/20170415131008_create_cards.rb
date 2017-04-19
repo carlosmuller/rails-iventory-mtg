@@ -5,8 +5,9 @@ class CreateCards < ActiveRecord::Migration[5.0]
       t.text :text
       t.string :cost
       t.string :sets, array: true, default: []
-      t.string :subtype, array: true, default: []
-      t.string :type, array: true, default: []
+      t.string :subtypes, array: true, default: []
+      t.string :types, array: true, default: []
+      t.string :supertypes, array: true, default: []
       t.integer :mid, array: true, default: []
       t.string :colors, array: true, default: []
       t.timestamps

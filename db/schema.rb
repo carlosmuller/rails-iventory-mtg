@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20170415131810) do
     t.string   "name"
     t.text     "text"
     t.string   "cost"
-    t.string   "sets",       default: [],              array: true
-    t.string   "subtype",    default: [],              array: true
-    t.string   "type",       default: [],              array: true
+    t.string   "subtypes",   default: [],              array: true
+    t.string   "types",      default: [],              array: true
+    t.string   "supertypes", default: [],              array: true
     t.integer  "mid",        default: [],              array: true
     t.string   "colors",     default: [],              array: true
     t.datetime "created_at",              null: false
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 20170415131810) do
     t.index ["colors"], name: "index_cards_on_colors", using: :gin
     t.index ["name"], name: "index_cards_on_name", using: :btree
     t.index ["sets"], name: "index_cards_on_sets", using: :gin
-    t.index ["subtype"], name: "index_cards_on_subtype", using: :gin
-    t.index ["type"], name: "index_cards_on_type", using: :gin
+    t.index ["subtypes"], name: "index_cards_on_subtypes", using: :gin
+    t.index ["supertypes"], name: "index_cards_on_supertypes", using: :gin
+    t.index ["types"], name: "index_cards_on_types", using: :gin
   end
 
 end
