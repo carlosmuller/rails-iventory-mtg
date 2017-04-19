@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415131810) do
+ActiveRecord::Schema.define(version: 20170419224431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_sets", force: :cascade do |t|
+    t.integer  "mid"
+    t.integer  "card_id"
+    t.integer  "sets_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_card_sets_on_card_id", using: :btree
+    t.index ["sets_id"], name: "index_card_sets_on_sets_id", using: :btree
+  end
 
   create_table "cards", force: :cascade do |t|
     t.string   "name"
     t.text     "text"
     t.string   "cost"
+    t.string   "sets",       default: [],              array: true
     t.string   "subtypes",   default: [],              array: true
     t.string   "types",      default: [],              array: true
     t.string   "supertypes", default: [],              array: true
@@ -28,10 +39,15 @@ ActiveRecord::Schema.define(version: 20170415131810) do
     t.datetime "updated_at",              null: false
     t.index ["colors"], name: "index_cards_on_colors", using: :gin
     t.index ["name"], name: "index_cards_on_name", using: :btree
-    t.index ["sets"], name: "index_cards_on_sets", using: :gin
     t.index ["subtypes"], name: "index_cards_on_subtypes", using: :gin
     t.index ["supertypes"], name: "index_cards_on_supertypes", using: :gin
     t.index ["types"], name: "index_cards_on_types", using: :gin
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

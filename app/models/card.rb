@@ -1,9 +1,11 @@
 class Card < ApplicationRecord
+  has_many :card_sets
+  has_many :sets, :through => :card_sets
 
   # Update a card adding new informations that are on json
   # @param [JSON] json a json object with properties form mtgjson.com
   # @param [String] setName the name of the set
-  def merge (json, setName)
+  def merge (json)
     self.mid << json['multiverseid']
     self.sets << setName
     addArrays json
@@ -12,17 +14,15 @@ class Card < ApplicationRecord
   # Create a card from json and add the set to the card
   # @param [JSON] json a json object with properties form mtgjson.com
   # @param [String] setName the name of the set
-  def createFromJson(json, setName)
+  def createFromJson(json)
     self.name = json['name']
     self.text = json['text']
     self.cost = json['manaCost']
     self.mid =[]
     self.mid << json['multiverseid']
     self.sets = []
-    self.sets << setName
     addArrays json
   end
-
 
   # @param [JSON] json object to update the arrays objects
   def addArrays json

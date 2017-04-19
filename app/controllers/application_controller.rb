@@ -9,17 +9,18 @@ class ApplicationController < ActionController::Base
       allsets.each do |set|
         setName = set['name']
         logger.info "Começando a processar o set[#{setName}]"
+        Sets.find_by(name: )
         set['cards'].each do |card|
           cardName = card['name']
           logger.info "Começando a processar o card[#{cardName}]"
           card_find_by = Card.find_by(name: cardName)
           if card_find_by
-            card_find_by.merge card, setName
+            card_find_by.merge card
             card_find_by.save
             logger.info "Fiz update no card[#{cardName}]"
           else
             cardToCreate = Card.new
-            cardToCreate.createFromJson(card, setName)
+            cardToCreate.createFromJson(card)
             cardToCreate.save
             logger.info "Criei o card[#{cardName}]"
           end
