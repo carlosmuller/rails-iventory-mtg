@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
 
   def update_cards
     allsets = getAllSets
-    Concurrent::Future.execute do
+    # Concurrent::Future.execute do
       allsets.each do |set|
         setName = set['name']
         logger.info "Começando a processar o set[#{setName}]"
-        Sets.find_by(name: )
+        sets = Sets.find_by(name: setName)
+        if !sets
+          sets = Sets.new
+          sets.name= setName
+          sets.save
+        end
         set['cards'].each do |card|
           cardName = card['name']
           logger.info "Começando a processar o card[#{cardName}]"
@@ -19,17 +24,22 @@ class ApplicationController < ActionController::Base
             card_find_by.save
             logger.info "Fiz update no card[#{cardName}]"
           else
-            cardToCreate = Card.new
-            cardToCreate.createFromJson(card)
-            cardToCreate.save
+            card_find_by = Card.new
+            card_find_by.createFromJson(card)
+            card_find_by.save
             logger.info "Criei o card[#{cardName}]"
           end
+          card_set = CardSet.new
+          card_set.card = card_find_by
+          card_set.sets = sets
+          card_set.mid = card['multiverseid']
+          card_set.save
         end
         logger.info "Terminei de processar o set[#{setName}]"
       end
       logger.info "Terminei  o update"
-    end
-    head 200
+    # end
+    head 200 
   end
 
   def getAllSets

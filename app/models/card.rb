@@ -7,7 +7,6 @@ class Card < ApplicationRecord
   # @param [String] setName the name of the set
   def merge (json)
     self.mid << json['multiverseid']
-    self.sets << setName
     addArrays json
   end
 
