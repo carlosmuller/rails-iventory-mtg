@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def update_cards
     allsets = getAllSets
-    # Concurrent::Future.execute do
+    Concurrent::Future.execute do
       allsets.each do |set|
         setName = set['name']
         logger.info "Começando a processar o set[#{setName}]"
@@ -38,8 +38,8 @@ class ApplicationController < ActionController::Base
         logger.info "Terminei de processar o set[#{setName}]"
       end
       logger.info "Terminei  o update"
-    # end
-    head 200 
+    end
+    head 200
   end
 
   def getAllSets
