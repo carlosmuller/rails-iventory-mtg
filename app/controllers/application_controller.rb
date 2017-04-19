@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   require 'net/http'
   require 'json'
 
+  def add_set
 
-  def update_cards
+  end
+
+  def first_seed
     allsets = getAllSets
     Concurrent::Future.execute do
       allsets.each do |set|
@@ -40,6 +43,11 @@ class ApplicationController < ActionController::Base
       logger.info "Terminei  o update"
     end
     head 200
+  end
+
+  def getSet set
+    response = Net::HTTP.get_response('mtgjson.com', "/json/#{set}")
+    return JSON.parse(response.body)
   end
 
   def getAllSets
