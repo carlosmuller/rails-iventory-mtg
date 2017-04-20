@@ -1,12 +1,11 @@
 class Card < ApplicationRecord
   has_many :card_sets
-  has_many :sets, :through => :card_sets
+  has_many :sets, through: :card_sets
 
   # Update a card adding new informations that are on json
   # @param [JSON] json a json object with properties form mtgjson.com
   # @param [String] setName the name of the set
   def merge (json)
-    self.mid << json['multiverseid']
     addArrays json
   end
 
@@ -17,9 +16,6 @@ class Card < ApplicationRecord
     self.name = json['name']
     self.text = json['text']
     self.cost = json['manaCost']
-    self.mid =[]
-    self.mid << json['multiverseid']
-    self.sets = []
     addArrays json
   end
 
@@ -35,7 +31,7 @@ class Card < ApplicationRecord
     if json['supertypes']
       json['supertypes'].each do |supertype|
         if !supertype.in? self.supertypes
-          self.subtypes << supertype
+          self.supertypes << supertype
         end
       end
     end
