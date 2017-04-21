@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  require 'net/http'
-  require 'json'
   include ApplicationHelper
 
   def add_set
@@ -15,7 +13,7 @@ class ApplicationController < ActionController::Base
     sets.name= setName
     sets.save
     current_set['cards'].each do |card|
-      processCard(card, sets)
+      processCard(card, sets, true)
     end
     logger.info "Terminei de processar o set[#{setName}]"
     head 200
@@ -25,7 +23,7 @@ class ApplicationController < ActionController::Base
     allsets = getAllSets
     Concurrent::Future.execute do
       allsets.each do |set|
-       processSet(set)
+       processSet(set, true)
       end
       logger.info "Terminei o update"
     end
