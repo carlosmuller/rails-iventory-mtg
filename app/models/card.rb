@@ -44,10 +44,11 @@ class Card < ApplicationRecord
     end
     if json['subtypes']
       json['subtypes'].each do |subtype|
-        if subtype.in? self.subtypes
+        if !subtype.in? self.subtypes
           self.subtypes << subtype
         end
       end
     end
   end
+
 end
