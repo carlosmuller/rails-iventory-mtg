@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
-  def add_set
+  def addSet
     current_set = getSet params[:set]
     setName = current_set['name']
     if Sets.find_by(name: setName)

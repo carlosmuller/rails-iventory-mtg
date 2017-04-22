@@ -11,6 +11,7 @@ module ApplicationHelper
     if !sets
       sets = Sets.new
       sets.name= setName
+      sets.code= set['code']
       sets.save
     end
     set['cards'].each do |card|
