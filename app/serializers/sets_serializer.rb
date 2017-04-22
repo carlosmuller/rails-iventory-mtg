@@ -1,5 +1,11 @@
 class SetsSerializer < ActiveModel::Serializer
-  attributes :name
-  has_many :card_sets
-  has_many :card, through: :card_sets
+  attributes :name, :cards
+
+  def cards
+    cards = []
+    object.card_sets.each do |cs|
+      cards << {'name': cs.card.name , 'mid': cs.mid }
+    end
+    cards
+  end
 end
