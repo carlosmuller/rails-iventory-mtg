@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       head 200
       return
     end
-    sets = sets.new
+    sets = Sets.new
     sets.name= setName
     sets.save
     current_set['cards'].each do |card|
