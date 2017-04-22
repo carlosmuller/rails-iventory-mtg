@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: iventorymtg_production
-  username: iventorymtg
-  password: <%= ENV['IVENTORYMTG_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
