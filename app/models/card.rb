@@ -7,6 +7,7 @@ class Card < ApplicationRecord
   # @param [String] setName the name of the set
   def merge (json)
     addArrays json
+    setMaxMid json['multiverseid']
   end
 
   # Create a card from json and add the set to the card
@@ -16,6 +17,7 @@ class Card < ApplicationRecord
     self.name = json['name']
     self.text = json['text']
     self.cost = json['manaCost']
+    setMaxMid json['multiverseid']
     addArrays json
   end
 
@@ -25,6 +27,14 @@ class Card < ApplicationRecord
     createOrUpdateProperty('supertypes', json)
     createOrUpdateProperty('types', json)
     createOrUpdateProperty('subtypes', json)
+  end
+
+  def setMaxMid mid
+    mid ||= 0
+    self.maxmid ||= 0
+    if self.maxmid <= mid
+      self.maxmid = mid
+    end
   end
 
   def createOrUpdateProperty(propertyName, json)

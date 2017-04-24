@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422123506) do
+ActiveRecord::Schema.define(version: 20170424221445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(version: 20170422123506) do
     t.string   "name"
     t.text     "text"
     t.string   "cost"
+    t.integer  "mid",        default: [],              array: true
     t.string   "sets",       default: [],              array: true
     t.string   "subtypes",   default: [],              array: true
     t.string   "types",      default: [],              array: true
     t.string   "supertypes", default: [],              array: true
-    t.integer  "mid",        default: [],              array: true
     t.string   "colors",     default: [],              array: true
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "maxmid"
     t.index ["colors"], name: "index_cards_on_colors", using: :gin
     t.index ["name"], name: "index_cards_on_name", using: :btree
     t.index ["subtypes"], name: "index_cards_on_subtypes", using: :gin
