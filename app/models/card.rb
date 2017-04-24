@@ -21,33 +21,27 @@ class Card < ApplicationRecord
 
   # @param [JSON] json object to update the arrays objects
   def addArrays json
-    if json['colors']
-      json['colors'].each do |color|
-        if !color.in? self.colors
-          self.colors << color
-        end
+    createOrUpdateProperty('color', json)
+    createOrUpdateProperty('supertypes', json)
+    createOrUpdateProperty('types', json)
+    createOrUpdateProperty('subtypes', json)
+  end
+
+  def createOrUpdateProperty(propertyName, json)
+    jsonProperty = json[propertyName]
+    property = self.instance_variable_get("@#{propertyName}")
+    property ||= Array.new
+    if jsonProperty
+      jsonProperty.each do |jsp|
+        setProperty(jsp, property, propertyName)
       end
     end
-    if json['supertypes']
-      json['supertypes'].each do |supertype|
-        if !supertype.in? self.supertypes
-          self.supertypes << supertype
-        end
-      end
-    end
-    if json['types']
-      json['types'].each do |type|
-        if !type.in? self.types
-          self.types << type
-        end
-      end
-    end
-    if json['subtypes']
-      json['subtypes'].each do |subtype|
-        if !subtype.in? self.subtypes
-          self.subtypes << subtype
-        end
-      end
+  end
+
+  def setProperty(jsp, property, propertyName)
+    if !jsp.in? property
+      property << jsp
+      self.send("#{propertyName}=", property)
     end
   end
 
