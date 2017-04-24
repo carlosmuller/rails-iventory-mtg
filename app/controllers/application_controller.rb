@@ -9,12 +9,7 @@ class ApplicationController < ActionController::Base
       head 200
       return
     end
-    sets = Sets.new
-    sets.name= setName
-    sets.save
-    current_set['cards'].each do |card|
-      processCard(card, sets, true)
-    end
+    processSet current_set, true
     logger.info "Terminei de processar o set[#{setName}]"
     head 200
   end
