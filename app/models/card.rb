@@ -29,6 +29,9 @@ class Card < ApplicationRecord
     createOrUpdateProperty('subtypes', json)
   end
 
+
+  # Method if mid and self.maxmid is null set to 0
+  # @param [Integer] mid
   def setMaxMid mid
     mid ||= 0
     self.maxmid ||= 0
@@ -37,20 +40,27 @@ class Card < ApplicationRecord
     end
   end
 
+  # Method to set or update the property from the card based on value from json
+  # @param [String] propertyName
+  # @param [JSONObject] json
   def createOrUpdateProperty(propertyName, json)
     jsonProperty = json[propertyName]
     property = self.instance_variable_get("@#{propertyName}")
     property ||= Array.new
     if jsonProperty
-      jsonProperty.each do |jsp|
-        setProperty(jsp, property, propertyName)
+      jsonProperty.each do |jsonValue|
+        setProperty(jsonValue, property, propertyName)
       end
     end
   end
 
-  def setProperty(jsp, property, propertyName)
-    if !jsp.in? property
-      property << jsp
+
+  # @param [Object] jsonValue the value to set in property
+  # @param [Array] property the property from card to put the value
+  # @param [String] propertyName the name of the property
+  def setProperty(jsonValue, property, propertyName)
+    if !jsonValue.in? property
+      property << jsonValue
       self.send("#{propertyName}=", property)
     end
   end
