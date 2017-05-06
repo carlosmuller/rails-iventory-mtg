@@ -60,6 +60,8 @@ GEM
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.12.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -83,6 +85,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multipart-post (2.0.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -119,6 +122,8 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     ref (2.0.0)
+    sentry-raven (2.4.0)
+      faraday (>= 0.7.6, < 1.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -165,6 +170,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.2)
+  sentry-raven
   spring
   spring-watcher-listen (~> 2.0.0)
   therubyracer
