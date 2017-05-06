@@ -5,7 +5,6 @@ class CardsController < ApplicationController
     query = params[:query]
     query.sub!('æ', 'ae')
     query.sub!("'", "%")
-    logger.info ("query before procces [#{params[:query]}] after [#{query}] ")
     if query.length < 3
       render json: {'error': 'please use more letters'}
       return
