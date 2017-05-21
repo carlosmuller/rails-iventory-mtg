@@ -33,7 +33,7 @@ class Card < ApplicationRecord
   # Method if mid and self.maxmid is null set to 0
   # @param [Integer] mid
   def setMaxMid mid
-    mid ||= 0
+    mid         ||= 0
     self.maxmid ||= 0
     if self.maxmid <= mid
       self.maxmid = mid
@@ -45,8 +45,8 @@ class Card < ApplicationRecord
   # @param [JSONObject] json
   def createOrUpdateProperty(propertyName, json)
     jsonProperty = json[propertyName]
-    property = self.instance_variable_get("@#{propertyName}")
-    property ||= Array.new
+    property     = self.instance_variable_get("@#{propertyName}")
+    property     ||= Array.new
     if jsonProperty
       jsonProperty.each do |jsonValue|
         setProperty(jsonValue, property, propertyName)

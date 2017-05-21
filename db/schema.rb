@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20170430124956) do
   enable_extension "plpgsql"
 
   create_table "card_sets", force: :cascade do |t|
-    t.integer  "mid"
-    t.integer  "card_id"
-    t.integer  "sets_id"
+    t.integer "mid"
+    t.integer "card_id"
+    t.integer "sets_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_card_sets_on_card_id", using: :btree
@@ -26,18 +26,18 @@ ActiveRecord::Schema.define(version: 20170430124956) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.string   "name"
-    t.text     "text"
-    t.string   "cost"
-    t.integer  "mid",        default: [],              array: true
-    t.string   "sets",       default: [],              array: true
-    t.string   "subtypes",   default: [],              array: true
-    t.string   "types",      default: [],              array: true
-    t.string   "supertypes", default: [],              array: true
-    t.string   "colors",     default: [],              array: true
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "maxmid"
+    t.string "name"
+    t.text "text"
+    t.string "cost"
+    t.integer "mid", default: [], array: true
+    t.string "sets", default: [], array: true
+    t.string "subtypes", default: [], array: true
+    t.string "types", default: [], array: true
+    t.string "supertypes", default: [], array: true
+    t.string "colors", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "maxmid"
     t.index ["colors"], name: "index_cards_on_colors", using: :gin
     t.index ["name"], name: "index_cards_on_name", using: :btree
     t.index ["subtypes"], name: "index_cards_on_subtypes", using: :gin
@@ -46,19 +46,19 @@ ActiveRecord::Schema.define(version: 20170430124956) do
   end
 
   create_table "sets", force: :cascade do |t|
-    t.string   "name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "code"
+    t.string "code"
     t.index ["code"], name: "index_sets_on_code", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -4,12 +4,12 @@ module ApplicationHelper
   include CardsHelper
 
   def processSet(set, useLogger)
-    setName = set['name']
+    setName    = set['name']
     messageSet = "Começando a processar o set[#{setName}]"
     log(messageSet, useLogger)
     sets = Sets.find_by(name: setName)
     if !sets
-      sets = Sets.new
+      sets     = Sets.new
       sets.name= setName
       sets.code= set['code']
       sets.save

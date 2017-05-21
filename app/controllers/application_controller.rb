@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def addSet
     current_set = getSet params[:set]
-    setName = current_set['name']
+    setName     = current_set['name']
     if Sets.find_by(name: setName)
       logger.info "Já tinha o set #{setName}"
       head 200
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     allsets = getAllSets
     Concurrent::Future.execute do
       allsets.each do |set|
-       processSet(set, true)
+        processSet(set, true)
       end
       logger.info "Terminei o update"
     end

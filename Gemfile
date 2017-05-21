@@ -8,7 +8,7 @@ end
 
 gem 'rails', '~> 5.0.2'
 gem 'active_model_serializers'
-gem 'bcrypt' , '~> 3.1'
+gem 'bcrypt', '~> 3.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'uglifier', '>= 1.3.0'
@@ -33,7 +33,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
 
 
 # Use Redis adapter to run Action Cable in production

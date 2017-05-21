@@ -5,7 +5,7 @@ class SetsSerializer < ActiveModel::Serializer
     cards = []
     object.card_sets.each do |cs|
       mid = cs.mid
-      cards << {'name': cs.card.name , 'mid': mid, 'img': BASE_IMAGE_URI % [mid]}
+      cards << { 'name': cs.card.name, 'mid': mid, 'img': BASE_IMAGE_URI % [mid] }
     end
     cards
   end

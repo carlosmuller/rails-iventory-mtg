@@ -6,7 +6,7 @@ class CardsController < ApplicationController
     query.sub!('æ', 'ae')
     query.sub!("'", "%")
     if query.length < 3
-      render json: {'error': 'please use more letters'}
+      render json: { 'error': 'please use more letters' }
       return
     end
     cards = searchCard(query)

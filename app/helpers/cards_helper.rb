@@ -13,10 +13,10 @@ module CardsHelper
       card_find_by.save
       log "Criei o card[#{cardName}]", useLogger
     end
-    card_set = CardSet.new
+    card_set      = CardSet.new
     card_set.card = card_find_by
     card_set.sets = sets
-    card_set.mid = card['multiverseid']
+    card_set.mid  = card['multiverseid']
     card_set.save
   end
 
