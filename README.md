@@ -12,10 +12,10 @@ If  you created a migration and want to run it:
   
 ``` rails db:migrate```
 
-#First run
+## First run
  1. Access  ```localhost:3000/firstseed``` - to poupulate the database 
  
-#Update database
+## Update database
  1. To add a new set access ```localhost/add/set/[JSON name]``` 
  
  ..* the json name can be obtained on the mtgjson and will be on the link like: https://mtgjson.com/json/MM3-x.json, the name of the set is MM3-x  
